@@ -1,6 +1,11 @@
 FROM docker:stable-git
 
-RUN apk add --update bash make py-pip tar && \
+ENV PATH=/usr/local/src/.ci/bin:/usr/local/src/bin:${PATH}
+
+RUN set -exu && \
+apk add --update bash ca-certificates curl git make py-pip tar && \
 pip install docker-compose && \
-rm -rf /var/lib/apt/lists/* /var/cache/apk/* && \
-sed -i 's/\/ash/\/bash/g' /etc/passwd
+rm -rf ~/* /var/cache/* && \
+mkdir -p /var/cache/docker/ /usr/local/src/
+
+WORKDIR /usr/local/src
