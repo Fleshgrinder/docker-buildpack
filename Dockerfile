@@ -6,6 +6,6 @@ RUN set -exu && \
 apk add --update bash ca-certificates curl git make py-pip tar jq && \
 pip install docker-compose && \
 rm -rf ~/* /var/cache/* && \
-mkdir -p /var/cache/docker/ /usr/local/src/
+mkdir -p /var/cache/apk/ /var/cache/docker/ /usr/local/src/
 
 WORKDIR /usr/local/src
